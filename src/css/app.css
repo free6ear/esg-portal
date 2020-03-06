@@ -5,6 +5,12 @@
     margin: 18px 0px 0px 0;
     float: left;
   }
-  .site-layout .site-layout-background {
-    background: #fff;
+.site-layout-background {
+    background: #ececec;
   }
+  .site-card-wrapper {
+    background: #ececec;
+    padding: 30px;
+    margin:0 auto;
+  }
+  
