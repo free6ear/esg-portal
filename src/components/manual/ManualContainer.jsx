@@ -5,40 +5,55 @@ import MarkdownNavbar from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
 import HaierManual from '../../md/haier_manual.md'
 
+const { Link } = Anchor;
 const { Header, Content, Sider } = Layout;
 
 export default class ManualContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            markdown: '',
+            terms: null,
+            articleDetail: '',
         }
     }
 
+    // componentWillMount() {
+    //     fetch(HaierManual)
+    //         .then(res => res.text())
+    //         .then(text => this.setState({markdown: text}));
+    // }
     componentWillMount() {
-        fetch(HaierManual)
-            .then(res => res.text())
-            .then(text => this.setState({markdown: text}));
+        fetch(HaierManual).then((response) => response.text()).then((text) => {
+            this.setState({ terms: text })
+        })
     }
 
     render() {
     const {markdown} = this.state;
     return (
-        <Content style={{ padding: '0 50px' }}>
-        <Layout className="site-layout-background" style={{ padding: '24px 0' }}>
-            <Sider className="site-layout-background" width={200}>
+        <Content >
+        <Layout className="site-layout-background" style={{ padding: '24px 50px' }}>
+            {/* <Sider className="site-layout-background" width={200}>
                 <Menu
                     mode="inline"
                     style={{ height: '100%' }}
                 >
                 <div className="navigation">
-                    <MarkdownNavbar source={markdown} />
+                    <MarkdownNavbar source={this.state.terms} />
                 </div>
                 </Menu>
-            </Sider>
+            </Sider> */}
+            <Anchor>
+                <div className="MarkdownNav-title">文章目录</div>
+                {/* <MarkdownNavbar
+                  className="article-menu">
+                  source={this.state.terms}
+                  headingYopOffset={80}
+                  </MarkdownNavbar> */}
+            </Anchor>
             <Content style={{ padding: '0 24px', minHeight: 280 }}>                    
                 <ReactMarkdown 
-                    source={markdown}
+                    source={this.state.terms}
                     escapeHtml={false}
                 />
             </Content>
