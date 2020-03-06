@@ -40,7 +40,6 @@ export default class ManualContainer extends Component {
                 <ReactMarkdown 
                     source={markdown}
                     escapeHtml={false}
-                    className="markdown-body"
                 />
             </Content>
         </Layout>
