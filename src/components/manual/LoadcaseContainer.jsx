@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Anchor, Row, Col, Layout, Menu } from 'antd';
+import { Anchor, Layout } from 'antd';
 import ReactMarkdown from 'react-markdown';
 import MarkdownNavbar from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
-import HaierManual from '../../md/haier_manual.md'
+import LoadcaseMD from '../../md/loadcase.md'
 
 const { Link } = Anchor;
 const { Header, Content, Sider } = Layout;
 
-export default class ManualContainer extends Component {
+export default class LoadcaseContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -18,7 +18,7 @@ export default class ManualContainer extends Component {
     }
     
     componentWillMount() {
-        fetch(HaierManual).then((response) => response.text()).then((text) => {
+        fetch(LoadcaseMD).then((response) => response.text()).then((text) => {
             this.setState({ terms: text })
         })
     }
@@ -26,8 +26,8 @@ export default class ManualContainer extends Component {
     render() {
     const {markdown} = this.state;
     return (
-        <Content style={{ height: "100%" }}>
-        <Layout className="site-layout-background" style={{ padding: '24px 50px' }}>
+        <Content style={{ background: "white", height: "100%"}} >
+        <Layout className="site-layout-background" style={{ padding: '24px 24px', background: "white" }}>
             {/* <Sider className="site-layout-background" width={200}>
                 <Menu
                     mode="inline"
@@ -45,7 +45,7 @@ export default class ManualContainer extends Component {
                   headingYopOffset={80}
                   </MarkdownNavbar>
             </Anchor> */}
-            <Content style={{ padding: '0 24px', minHeight: 280 }}>                    
+            <Content style={{ padding: '24px 24px', minHeight: 280 }}>                    
                 <ReactMarkdown 
                     source={this.state.terms}
                     escapeHtml={false}

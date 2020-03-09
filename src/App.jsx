@@ -4,11 +4,15 @@ import { Layout, Menu } from 'antd' ;
 import { QuestionCircleOutlined, BookOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
 
 import HomeContainer from './components/home/HomeContainer.jsx';
-import SCSContainer from './components/scs/SCSContainer.jsx';
-import ManualContainer from './components/manual/ManualContainer.jsx';
+import SCS2019Container from './components/scs/SCS2019Container.jsx';
+import SCS2018Container from './components/scs/SCS2018Container.jsx';
+import TempleteContainer from './components/manual/TempleteContainer.jsx';
+import LoadcaseContainer from './components/manual/LoadcaseContainer.jsx';
+import ClassificationContainer from './components/manual/ClassificationContainer.jsx';
 import FAQContainer from './components/faq/FAQContainer.jsx';
 import ProjectContainer from './components/project/ProjectContainer.jsx';
 import app from './css/app.css';
+import SubMenu from 'antd/lib/menu/SubMenu';
 
 const { Header, Content } = Layout;
 
@@ -25,7 +29,7 @@ export default class App extends React.Component{
     render() {
         return <HashRouter>
             <Layout style={{ height: "100vh " }}>
-                <Header className="header">
+                <Header className="header" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                     {/* <Link to="/home"> */}
                         <div className="logo" />
                     {/* </Link> */}
@@ -40,19 +44,30 @@ export default class App extends React.Component{
                                 <HomeOutlined />
                                 首页
                             </Link>
-                        </Menu.Item>    
-                        <Menu.Item key="scs">
-                            <Link to="/scs">
-                                <SettingOutlined />
-                                安装文档
-                            </Link>
-                        </Menu.Item>    
-                        <Menu.Item key="manual">
-                            <Link to="/manual">
+                        </Menu.Item> 
+                        <SubMenu
+                          title={
+                              <span className="submenu-title-wrapper">
+                                  <SettingOutlined />
+                                  安装文档
+                              </span>
+                          }
+                        >
+                            <Menu.Item key="scs:2019"><Link to="/scs/2019">SCS2019</Link></Menu.Item>
+                            <Menu.Item key="scs:2018"><Link to="/scs/2018">SCS2018</Link></Menu.Item>
+                        </SubMenu> 
+                        <SubMenu
+                          title={
+                              <span className="submenu-title-wrapper">
                                 <BookOutlined />
-                                制作教程    
-                            </Link>
-                        </Menu.Item>
+                                制作教程
+                              </span>
+                          }
+                        >
+                            <Menu.Item key="templete"> <Link to="/manual/templete">流程模板</Link></Menu.Item> 
+                            <Menu.Item key="loadcase"><Link to="/manual/loadcase">Loadcase</Link></Menu.Item>
+                            <Menu.Item key="classification"><Link to="/manual/classificatin">Classification</Link></Menu.Item>
+                        </SubMenu>   
                         <Menu.Item key="faq">
                             <Link to="/faq">
                                 <QuestionCircleOutlined />
@@ -62,12 +77,15 @@ export default class App extends React.Component{
                     </Menu>
                 </Header>
                 <Content
-                    className="site-layout-background"
+                    className="site-layout" style={{ marginTop: 64 }}
                 >
                     <Route path="/home" component={HomeContainer}></Route>   
                     <Route path="/project" component={ProjectContainer}></Route>      
-                    <Route path="/scs" component={SCSContainer}></Route>      
-                    <Route path="/manual" component={ManualContainer}></Route>
+                    <Route path="/scs/2019" component={SCS2019Container}></Route>  
+                    <Route path="/scs/2018" component={SCS2018Container}></Route>    
+                    <Route path="/manual/loadcase" component={LoadcaseContainer}></Route>
+                    <Route path="/manual/templete" component={TempleteContainer}></Route>
+                    <Route path="/manual/classification" component={ClassificationContainer}></Route>
                     <Route path="/faq" component={FAQContainer}></Route>             
                 </Content>
             </Layout>

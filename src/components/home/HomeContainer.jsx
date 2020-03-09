@@ -17,7 +17,7 @@ export default class HomeContainer extends Component {
         const isenter = this.state.isenter       
         return (
             <div className="site-card-wrapper" >
-                <Row justify="left" gutter={[48, 48]} style={{ margin: "0px 150px" }}>
+                <Row justify="left" gutter={[36, 48]} style={{ margin: "0px 150px" }}>
                     <Col span={6}>
                         <Card
                             hoverable
@@ -28,14 +28,21 @@ export default class HomeContainer extends Component {
                             />
                             }
                             actions={[
-                            <BugOutlined key="tracup" />,
-                            <EllipsisOutlined key="ellipsis" />,
+                                <a href="https://www.tracup.com/cloud/#/project/a87b8a723b17122aaa9fc6da96952746/issues/1/">
+                                    <BugOutlined key="tracup" />
+                                </a>,
+                                <a href="/#/project/server">
+                                    <EllipsisOutlined key="ellipsis" />
+                                </a>
                             ]}
                         >
-                            <Meta
-                            title="海尔集团&nbsp;-&nbsp;数字化仿真平台"
-                            description="集成流程管理、仿真数据管理与材料库等模块，具备任务看板等特色功能，打通PLM，与TCUA协同作业"
-                            style={{ height: "100px" }} />
+                            <a href="http://192.168.40.87:8086/hwe">
+                                <Meta
+                                title="海尔集团&nbsp;-&nbsp;数字化仿真平台"
+                                description="集成流程管理、仿真数据管理与材料库等模块，具备任务看板等特色功能，打通PLM，与TCUA协同作业"
+                                style={{ height: "100px" }} 
+                                />
+                            </a>
                         </Card>
                     </Col>
                     <Col span={6}>
