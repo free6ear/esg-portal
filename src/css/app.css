@@ -13,4 +13,10 @@
     padding: 30px;
     margin:0 auto;
   }
+  .markdownNav-title {
+    font-size: large;
+    font-weight: 700;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
   

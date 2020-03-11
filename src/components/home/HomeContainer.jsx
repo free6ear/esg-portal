@@ -17,7 +17,7 @@ export default class HomeContainer extends Component {
         const isenter = this.state.isenter       
         return (
             <div className="site-card-wrapper" >
-                <Row justify="left" gutter={[36, 48]} style={{ margin: "0px 150px" }}>
+                <Row justify="left" gutter={[64, 48]} style={{ margin: "0 100px" }}>
                     <Col span={6}>
                         <Card
                             hoverable

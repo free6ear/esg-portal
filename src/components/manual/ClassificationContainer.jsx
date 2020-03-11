@@ -1,58 +1,62 @@
 import React, { Component } from 'react';
-import { Anchor, Layout } from 'antd';
+import { Anchor, Layout, Col, Row } from 'antd';
 import ReactMarkdown from 'react-markdown';
 import MarkdownNavbar from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
-import ClassificationMD from '../../md/classification.md'
-
-const { Link } = Anchor;
-const { Header, Content, Sider } = Layout;
+import '../../css/github-markdown.css';
+const loadcase = require('../../md/loadcase.md');
 
 export default class ClassificationContainer extends Component {
+    state = {
+        markdown: '',
+    }
     constructor(props) {
         super(props)
         this.state = {
-            terms: null,
-            articleDetail: '',
+           terms: null,
         }
     }
     
     componentWillMount() {
-        fetch(ClassificationMD).then((response) => response.text()).then((text) => {
-            this.setState({ terms: text })
+        fetch(loadcase)
+          .then(response => {
+              return response.text()
+          })
+          .then(text => { this.setState({ markdown: text })
         })
     }
 
     render() {
-    const {markdown} = this.state;
+        const { markdown } = this.state;
     return (
-        <Content >
-        <Layout className="site-layout-background" style={{ padding: '24px 50px' }}>
-            {/* <Sider className="site-layout-background" width={200}>
-                <Menu
-                    mode="inline"
-                    style={{ height: '100%' }}
-                >
-                <div className="navigation">
-                    <MarkdownNavbar source={this.state.terms} />
-                </div>
-                </Menu>
-            </Sider> */}
-            {/* <Anchor>
-                <div className="MarkdownNav-title">文章目录</div>
-                <MarkdownNavbar>
-                  source={this.state.terms}
-                  headingYopOffset={80}
-                  </MarkdownNavbar>
-            </Anchor> */}
-            <Content style={{ padding: '0 24px', minHeight: 280 }}>                    
-                <ReactMarkdown 
-                    source={this.state.terms}
-                    escapeHtml={false}
-                />
-            </Content>
+        <Layout className="site-layout-background" style={{ padding: "24px", background: "#f0f0f0", height: "100%" }}>
+            <Row style={{ background: "#f0f0f0" }}>
+                <Col span={4}></Col>
+                <Col span={12} style={{ background: "white", padding: "24px" }}>
+                    <ReactMarkdown 
+                        className="markdown-body"
+                        source={markdown}
+                        escapeHtml={false}
+                        style={{ padding: "10px", maxWidth: "" }}
+                        // renderers={{
+                        //     code: codeBlock,
+                        // }}
+                    />
+                </Col>
+                <Col span={4} style={{ height: "100vh" }} >
+                <Anchor style={{ height: "100vh" }} >
+                <div className="markdownNav-title">文档目录</div>
+                    <MarkdownNavbar 
+                        className="article-menu"
+                        source={markdown} />
+                </Anchor>  
+                </Col>
+            </Row>
+            {/* <Content style={{ padding: '24px 24px', margin: "0 300px", background: "white", minHeight: 280 }}>  
+                            
+
+            </Content> */}
         </Layout>
-    </Content>
     )
     }
 }

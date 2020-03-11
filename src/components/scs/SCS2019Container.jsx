@@ -37,12 +37,11 @@ const data = [
     },
 ];
 
-export default class SCSContainer extends Component {
+export default class SCS2019Container extends Component {
     constructor(props) {
         super(props)
         this.state = {}
     }
-
 
     render() {
         return (

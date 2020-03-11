@@ -21,12 +21,12 @@ export default class ManualContainer extends Component {
                 <List
                     style={{ padding: 24 }}
                     size="large"
-                    header={<div>Header</div>}
+                    header={<div>FAQ</div>}
                     bordered
                     dataSource={data}
                     renderItem={item => (
                         <List.Item>
-                        <Typography.Text mark>[ITEM]</Typography.Text> {item}
+                        <Typography.Text mark>[ERROR]</Typography.Text> {item}
                         </List.Item>
                     )}
                 />

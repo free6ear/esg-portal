@@ -29,7 +29,7 @@ export default class App extends React.Component{
     render() {
         return <HashRouter>
             <Layout style={{ height: "100vh " }}>
-                <Header className="header" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+                <Header className="header" style={{ width: '100%' }}>
                     {/* <Link to="/home"> */}
                         <div className="logo" />
                     {/* </Link> */}
@@ -77,8 +77,7 @@ export default class App extends React.Component{
                     </Menu>
                 </Header>
                 <Content
-                    className="site-layout" style={{ marginTop: 64 }}
-                >
+                    className="site-layout" >
                     <Route path="/home" component={HomeContainer}></Route>   
                     <Route path="/project" component={ProjectContainer}></Route>      
                     <Route path="/scs/2019" component={SCS2019Container}></Route>  
