@@ -11,7 +11,6 @@ import LoadcaseContainer from './components/manual/LoadcaseContainer.jsx';
 import ClassificationContainer from './components/manual/ClassificationContainer.jsx';
 import FAQContainer from './components/faq/FAQContainer.jsx';
 import ProjectContainer from './components/project/ProjectContainer.jsx';
-import app from './css/app.css';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 const { Header, Content } = Layout;
@@ -20,10 +19,6 @@ export default class App extends React.Component{
     constructor(props){
         super(props)
         this.state = {}
-    }
-
-    componentWillMount() {
-        console.log(window.location.hash.split('/')[1]);
     }
 
     render() {
@@ -78,7 +73,7 @@ export default class App extends React.Component{
                 </Header>
                 <Content
                     className="site-layout" >
-                    <Route path="/home" component={HomeContainer}></Route>   
+                    <Route path="/home" component={HomeContainer} ></Route>   
                     <Route path="/project" component={ProjectContainer}></Route>      
                     <Route path="/scs/2019" component={SCS2019Container}></Route>  
                     <Route path="/scs/2018" component={SCS2018Container}></Route>    

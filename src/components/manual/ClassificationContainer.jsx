@@ -3,7 +3,7 @@ import { Anchor, Layout, Col, Row } from 'antd';
 import ReactMarkdown from 'react-markdown';
 import MarkdownNavbar from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
-import '../../css/github-markdown.css';
+import '../../css/github-markdown.scss';
 const loadcase = require('../../md/loadcase.md');
 
 export default class ClassificationContainer extends Component {

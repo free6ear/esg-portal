@@ -321,7 +321,21 @@ module.exports = function(webpackEnv) {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
-        { test:  /\.md$/, use: 'raw-loader' }
+        { test:  /\.md$/, use: 'raw-loader' },
+        { 
+          test: /\.css$/, 
+          use: [
+            {
+              loader: 'css-loader',
+                options: {
+                importLoaders: 1,
+                modules: true,
+                camelCase: true,
+                localIdentName: '[name]_[local]_[hash:base64:5]',
+              },
+           }
+        ]},
+        { test: /\.scss%/, use: ['style-loader', 'css-loader', 'sass-loader'] },
 
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
