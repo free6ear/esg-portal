@@ -11,6 +11,7 @@ import LoadcaseContainer from './components/manual/LoadcaseContainer.jsx';
 import ClassificationContainer from './components/manual/ClassificationContainer.jsx';
 import FAQContainer from './components/faq/FAQContainer.jsx';
 import ProjectContainer from './components/project/ProjectContainer.jsx';
+import './css/index.css';
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 const { Header, Content } = Layout;
@@ -26,7 +27,7 @@ export default class App extends React.Component{
             <Layout style={{ height: "100vh " }}>
                 <Header className="header" style={{ width: '100%' }}>
                     {/* <Link to="/home"> */}
-                        <div className="logo" />
+                        <a href="/#/home"><div className="logo" /></a>
                     {/* </Link> */}
                     <Menu
                       theme="dark"
@@ -37,7 +38,7 @@ export default class App extends React.Component{
                         <Menu.Item key="home">
                             <Link to="/home">
                                 <HomeOutlined />
-                                首页
+                                项目
                             </Link>
                         </Menu.Item> 
                         <SubMenu

@@ -321,20 +321,6 @@ module.exports = function(webpackEnv) {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
-        { test:  /\.md$/, use: 'raw-loader' },
-        { 
-          test: /\.css$/, 
-          use: [
-            {
-              loader: 'css-loader',
-                options: {
-                importLoaders: 1,
-                modules: true,
-                camelCase: true,
-                localIdentName: '[name]_[local]_[hash:base64:5]',
-              },
-           }
-        ]},
         { test: /\.scss%/, use: ['style-loader', 'css-loader', 'sass-loader'] },
 
         // First, run the linter.
@@ -365,6 +351,27 @@ module.exports = function(webpackEnv) {
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
+            { test:  /\.md$/, use: 'raw-loader' },
+            {
+              // Exclude `js` files to keep "css" loader working as it injects
+              // its runtime that would otherwise processed through "file" loader.
+              // Also exclude `html` and `json` extensions so they get processed
+              // by webpacks internal loaders.
+              exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.sass$/, /\.scss$/],
+              loader: require.resolve('file-loader'),
+              options: {
+                name: 'static/media/[name].[hash:8].[ext]',
+              },
+            },
+            {
+              test: /\.(scss|sass)$/,
+              use: [
+                'style-loader',
+                { loader: 'css-loader', options: { importLoaders: 1,modules: true } },
+                'sass-loader'
+              ]
+              // loaders: ['style-loader', 'css-loader', 'sass-loader']
+            },
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
