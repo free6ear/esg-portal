@@ -96,7 +96,7 @@
     ]
   },
   "devDependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "markdown-navbar": "^1.4.0",
     "raw-loader": "^4.0.0",
     "react-markdown": "^4.3.1"
